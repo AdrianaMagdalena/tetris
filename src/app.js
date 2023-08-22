@@ -14,9 +14,9 @@ const lTetromino = [
 ];
 
 const zTetromino = [
-  [width * 2 + 1, width * 2 + 2, width * 3, width * 3 + 1],
+  [width + 1, width + 2, width * 2, width * 2 + 1],
   [1, width, width + 1, width * 2 + 1],
-  [width * 2 + 1, width * 2 + 2, width * 3, width * 3 + 1],
+  [width + 1, width + 2, width * 2, width * 2 + 1],
   [1, width, width + 1, width * 2 + 1],
 ];
 
@@ -50,8 +50,13 @@ const theTetrominoes = [
 ];
 
 let currentPosition = 4;
-let current = theTetrominoes[0][0];
-console.log(current);
+let currentRotation = 0;
+
+//randomly select a tetromino and it's first rotation
+let random = Math.floor(Math.random() * theTetrominoes.length);
+console.log(theTetrominoes);
+console.log(random);
+let current = theTetrominoes[random][currentRotation];
 
 // draw the first rotation in the first tetronimmo
 function draw() {
@@ -60,3 +65,10 @@ function draw() {
   });
 }
 draw();
+
+//undraw the tetronimo
+function undraw() {
+  current.forEach((index) => {
+    squares[currentPosition + index].classList.remove("tetromino");
+  });
+}
