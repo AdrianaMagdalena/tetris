@@ -59,7 +59,7 @@ button:hover {
   width: 40px;
 }
 
-.tetronimo {
+.tetromino {
   background-color: plum;
   border-top: solid 6px rgb(224, 206, 224);
   border-left: solid 6px rgb(220, 203, 220);
