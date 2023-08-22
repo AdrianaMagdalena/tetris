@@ -57,5 +57,12 @@ button:hover {
   box-sizing: border-box;
   height: 40px;
   width: 40px;
-  border: 1px slategray solid;
+}
+
+.tetronimo {
+  background-color: plum;
+  border-top: solid 6px rgb(224, 206, 224);
+  border-left: solid 6px rgb(220, 203, 220);
+  border-right: solid 6px rgb(123, 89, 123);
+  border-bottom: solid 6px rgb(123, 89, 123);
 }
