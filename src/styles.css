@@ -22,17 +22,10 @@ h1 {
 }
 
 .text-container {
-  width: 400px;
+  width: 406px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.grid {
-  width: 400px;
-  height: 800px;
-  border: solid 3px whitesmoke;
-  box-shadow: 0 0 7px 4px #eac5d8;
 }
 
 button {
@@ -49,4 +42,20 @@ button:hover {
   background-color: transparent;
   color: whitesmoke;
   box-shadow: 0 0 7px 4px #eac5d8;
+}
+
+.grid {
+  width: 400px;
+  height: 800px;
+  border: solid 3px whitesmoke;
+  box-shadow: 0 0 7px 4px #eac5d8;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid div {
+  box-sizing: border-box;
+  height: 40px;
+  width: 40px;
+  border: 1px slategray solid;
 }
