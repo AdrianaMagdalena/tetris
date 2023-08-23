@@ -80,9 +80,6 @@ function undraw() {
   });
 }
 
-// make the tetromino to move down every second
-// timerID = setInterval(moveDown, fallingSpeed);
-
 //assign functions to keyCode:
 function control(e) {
   if (e.key === "ArrowLeft") {
