@@ -22,7 +22,7 @@ h1 {
 }
 
 .text-container {
-  width: 406px;
+  width: 356px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,8 +45,8 @@ button:hover {
 }
 
 .grid {
-  width: 400px;
-  height: 800px;
+  width: 350px;
+  height: 700px;
   border: solid 3px whitesmoke;
   box-shadow: 0 0 7px 4px #eac5d8;
   display: flex;
@@ -55,15 +55,15 @@ button:hover {
 
 .grid div {
   box-sizing: border-box;
-  height: 40px;
-  width: 40px;
+  height: 35px;
+  width: 35px;
 }
 
 .tetromino {
   background-color: plum;
-  border-top: solid 6px rgb(224, 206, 224);
-  border-left: solid 6px rgb(224, 206, 224);
-  border-right: solid 6px rgb(123, 89, 123);
-  border-bottom: solid 6px rgb(123, 89, 123);
-  border-radius: 6px;
+  border-top: solid 5px rgb(224, 206, 224);
+  border-left: solid 5px rgb(224, 206, 224);
+  border-right: solid 5px rgb(123, 89, 123);
+  border-bottom: solid 5px rgb(123, 89, 123);
+  border-radius: 5px;
 }
