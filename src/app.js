@@ -8,6 +8,7 @@ let nextRandom = 0;
 let timerID;
 let fallingSpeed = 500;
 let score = 0;
+const colors = ["#91AA88", "#ECCB83", "#90AACB", "#D996B9", "#D86F74"];
 
 // the tetrominoes
 const lTetromino = [
@@ -66,6 +67,7 @@ let current = theTetrominoes[random][currentRotation];
 function draw() {
   current.forEach((index) => {
     squares[currentPosition + index].classList.add("tetromino");
+    squares[currentPosition + index].style.backgroundColor = colors[random];
   });
 }
 draw();
@@ -74,6 +76,7 @@ draw();
 function undraw() {
   current.forEach((index) => {
     squares[currentPosition + index].classList.remove("tetromino");
+    squares[currentPosition + index].style.backgroundColor = "";
   });
 }
 
@@ -119,6 +122,7 @@ function freeze() {
     draw();
     displayShape();
     addScore();
+    gameOver();
   }
 }
 
@@ -186,9 +190,12 @@ const upNextTetrominoes = [
 function displayShape() {
   displaySqaures.forEach((square) => {
     square.classList.remove("tetromino");
+    square.style.backgroundColor = "";
   });
   upNextTetrominoes[nextRandom].forEach((index) => {
     displaySqaures[displayIndex + index].classList.add("tetromino");
+    displaySqaures[displayIndex + index].style.backgroundColor =
+      colors[nextRandom];
   });
 }
 
@@ -226,11 +233,23 @@ function addScore() {
       row.forEach((index) => {
         squares[index].classList.remove("taken");
         squares[index].classList.remove("tetromino");
+        squares[index].style.backgroundColor = "";
       });
 
       const squaresRemoved = squares.splice(i, width);
       squares = squaresRemoved.concat(squares);
       squares.forEach((cell) => grid.appendChild(cell));
     }
+  }
+}
+
+function gameOver() {
+  if (
+    current.some((index) =>
+      squares[currentPosition + index].classList.contains("taken")
+    )
+  ) {
+    scoreDisplay.innerHTML = "GAME OVER";
+    clearInterval(timerID);
   }
 }
