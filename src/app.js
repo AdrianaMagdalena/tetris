@@ -72,3 +72,13 @@ function undraw() {
     squares[currentPosition + index].classList.remove("tetromino");
   });
 }
+
+// make the tetromino to move down every second
+timerID = setInterval(moveDown, 500);
+
+function moveDown() {
+  undraw();
+  currentPosition += width;
+  draw();
+  freeze();
+}
