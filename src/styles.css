@@ -26,13 +26,14 @@ h1 {
   justify-content: space-between;
   width: 306px;
   align-items: center;
+  gap: 2rem;
 }
 
 .text-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  width: 100%;
 }
 
 button {
@@ -44,6 +45,7 @@ button {
   border: solid 3px whitesmoke;
   font-weight: bold;
   margin: 2rem 0;
+  width: 100%;
 }
 
 button:hover {
