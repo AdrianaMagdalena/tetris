@@ -59,8 +59,6 @@ let currentRotation = 0;
 
 //randomly select a tetromino and it's first rotation
 let random = Math.floor(Math.random() * theTetrominoes.length);
-console.log(theTetrominoes);
-console.log(random);
 let current = theTetrominoes[random][currentRotation];
 
 // draw the first rotation in the first tetronimmo
@@ -70,7 +68,6 @@ function draw() {
     squares[currentPosition + index].style.backgroundColor = colors[random];
   });
 }
-draw();
 
 //undraw the tetronimo
 function undraw() {
@@ -101,6 +98,7 @@ function moveDown() {
   draw();
   freeze();
 }
+
 //freeze function
 function freeze() {
   if (
@@ -129,9 +127,7 @@ function moveLeft() {
   const isAtLeftEdge = current.some(
     (index) => (currentPosition + index) % width === 0
   );
-  if (!isAtLeftEdge) {
-    currentPosition -= 1;
-  }
+  if (!isAtLeftEdge) currentPosition -= 1;
   if (
     current.some((index) =>
       squares[currentPosition + index].classList.contains("taken")
@@ -147,9 +143,7 @@ function moveRight() {
   const isAtRightEdge = current.some(
     (index) => (currentPosition + index) % width === width - 1
   );
-  if (!isAtRightEdge) {
-    currentPosition += 1;
-  }
+  if (!isAtRightEdge) currentPosition += 1;
   if (
     current.some((index) =>
       squares[currentPosition + index].classList.contains("taken")
@@ -158,6 +152,30 @@ function moveRight() {
     currentPosition -= 1;
   }
   draw();
+}
+
+// FIX ROTATION OF TETROMINOES AT THE EDGE
+function isAtRight() {
+  return current.some((index) => (currentPosition + index + 1) % width === 0);
+}
+
+function isAtLeft() {
+  return current.some((index) => (currentPosition + index) % width === 0);
+}
+
+function checkRotatedPosition(P) {
+  P = P || currentPosition;
+  if ((P + 1) % width < 4) {
+    if (isAtRight()) {
+      currentPosition += 1;
+      checkRotatedPosition(P);
+    }
+  } else if (P % width > 5) {
+    if (isAtLeft()) {
+      currentPosition -= 1;
+      checkRotatedPosition(P);
+    }
+  }
 }
 
 //rotate the teromino
@@ -169,6 +187,7 @@ function rotate() {
     currentRotation = 0;
   }
   current = theTetrominoes[random][currentRotation];
+  checkRotatedPosition();
   draw();
 }
 
@@ -176,6 +195,7 @@ const displaySqaures = document.querySelectorAll(".minigrid div");
 const displayWidth = 4;
 let displayIndex = 0;
 
+//the Tetrominoes without rotations
 const upNextTetrominoes = [
   [1, displayWidth + 1, displayWidth * 2 + 1, 2],
   [0, displayWidth, displayWidth + 1, displayWidth * 2 + 1],
@@ -211,7 +231,7 @@ startButton.addEventListener("click", () => {
 });
 
 function addScore() {
-  for (let i = 0; i < 200; i += width) {
+  for (let i = 0; i < 199; i += width) {
     const row = [
       i,
       i + 1,
@@ -224,6 +244,7 @@ function addScore() {
       i + 8,
       i + 9,
     ];
+
     if (row.every((index) => squares[index].classList.contains("taken"))) {
       score += 10;
       scoreDisplay.innerHTML = score;
